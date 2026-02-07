@@ -1,5 +1,5 @@
-/****************************************************************************************** 
- *	Chili DirectX Framework Version 16.07.20											  *	
+/******************************************************************************************
+ *	Chili DirectX Framework Version 16.07.20											  *
  *	Game.cpp																			  *
  *	Copyright 2016 PlanetChili.net <http://www.planetchili.net>							  *
  *																						  *
@@ -21,16 +21,16 @@
 #include "MainWindow.h"
 #include "Game.h"
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd )
+	wnd(wnd),
+	gfx(wnd)
 {
 }
 
 void Game::Go()
 {
-	gfx.BeginFrame();	
+	gfx.BeginFrame();
 	UpdateModel();
 	ComposeFrame();
 	gfx.EndFrame();
@@ -41,31 +41,81 @@ void Game::UpdateModel()
 }
 
 void Game::ComposeFrame()
+//  SHIFT+ CTR + SPACE // GIVE TOOLTIPS
+//  SHIFT+ CTR + SPACE // GIVE TOOLTIPS
+//  CTRL + K THEN CTRL + D // FORMATS CODE
+
 {				//800x, 600y    RGB      
-	//gfx.PutPixel(695, 500, 255, 255, 255); // put a pixel on the screen
-	//gfx.PutPixel(696, 500, 255, 255, 255);
-	//gfx.PutPixel(697, 500, 255, 255, 255);
-	//gfx.PutPixel(703, 500, 255, 255, 255);
-	//gfx.PutPixel(704, 500, 255, 255, 255);
-	//gfx.PutPixel(705, 500, 255, 255, 255);
+	//gfx.PutPixel(695, 500, 255,gb,gb); // put a pixel on the screen
 
-	const int x = 400;
-	const int y = 300;
+	int x = 400;
+	int y = 300;
+	const int boxWidth = 10;
+	const int boxHeight = 10;
+	int gb = 255; // green and blue
 
-	// left and right
-	gfx.PutPixel(-5 + x,      y, 255, 255, 255);
-	gfx.PutPixel(-4 + x,      y, 255, 255, 255);
-	gfx.PutPixel(-3 + x,      y, 255, 255, 255);
-	gfx.PutPixel( 3 + x,      y, 255, 255, 255);
-	gfx.PutPixel( 4 + x,      y, 255, 255, 255);
-	gfx.PutPixel( 5 + x,      y, 255, 255, 255);
+	// MOVE THE PIXELS ON THE SCREEN
+	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		x = x + 100;
+	}
 
-	//// top and bottom
-	gfx.PutPixel(     x, -5 + y, 255, 255, 255);
-	gfx.PutPixel(     x, -4 + y, 255, 255, 255);
-	gfx.PutPixel(     x, -3 + y, 255, 255, 255);
-	gfx.PutPixel(     x, 3 +  y, 255, 255, 255);
-	gfx.PutPixel(     x, 4 +  y, 255, 255, 255);
-	gfx.PutPixel(     x, 5 +  y, 255, 255, 255); // 3D graphics transfer vertices in order to move graphics
-    // CTR + SHIFT + SPACE
+	if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	{
+		x = x - 100;
+	}
+
+	if (wnd.kbd.KeyIsPressed(VK_UP))
+	{
+		y = y - 100;
+	}
+
+	if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
+		y = y + 100;
+	}
+	// CHANGE THE COLOR OF THE PIXELS
+	if (wnd.kbd.KeyIsPressed(VK_CONTROL))
+	{
+		gb = 0;
+	}
+
+	//object.member.function(parameter)
+//const bool condition = wnd.kbd.KeyIsPressed( VK_UP); // this will stay true as long as the up arrow key is pressed
+
+	if (wnd.kbd.KeyIsPressed(VK_SHIFT)) // this is a branch that will execute depending on the value of the condition
+	{
+		// Draw the box outline using a for loop // I was lazy to not put the pixels one by one
+		for (int i = 0; i < boxWidth; i++) {
+			gfx.PutPixel(x + i, y, 255, gb, gb);           // top edge
+			gfx.PutPixel(x + i, y + boxHeight - 1, 255, gb, gb); // bottom edge
+		}
+
+		for (int j = 0; j < boxHeight; j++) {
+			gfx.PutPixel(x, y + j, 255, gb, gb);           // left edge
+			gfx.PutPixel(x + boxWidth - 1, y + j, 255, gb, gb); // right edge
+		}
+	}
+	else
+	{
+		// left and right
+		gfx.PutPixel(-5 + x, y, 255, gb, gb);
+		gfx.PutPixel(-4 + x, y, 255, gb, gb);
+		gfx.PutPixel(-3 + x, y, 255, gb, gb);
+		gfx.PutPixel(3 + x, y, 255, gb, gb);
+		gfx.PutPixel(4 + x, y, 255, gb, gb);
+		gfx.PutPixel(5 + x, y, 255, gb, gb);
+
+		//// top and bottom
+		gfx.PutPixel(x, -5 + y, 255, gb, gb);
+		gfx.PutPixel(x, -4 + y, 255, gb, gb);
+		gfx.PutPixel(x, -3 + y, 255, gb, gb);
+		gfx.PutPixel(x, 3 + y, 255, gb, gb);
+		gfx.PutPixel(x, 4 + y, 255, gb, gb);
+		gfx.PutPixel(x, 5 + y, 255, gb, gb); // 3D graphics transfer vertices in order to move graphics
+		//  SHIFT+ CTR + SPACE // GIVE TOOLTIPS
+	}
 }
+
+//Make a box shape
+
