@@ -51,8 +51,10 @@ void Game::ComposeFrame()
 	//gfx.PutPixel(695, 500, 255,gb,gb); // put a pixel on the screen
 
 	// Set variables have a lifespan called scope (LESSON 7)
-	int x = 400;
-	int y = 300;
+	// moved variables from local function scope to member variable scope so they can live as long as the program is running (LESSON 8)
+	/*int x = 400;
+	int y = 300;*/
+
 	const int boxWidth = 10;
 	const int boxHeight = 10;
 	int gb = 255; // green and blue
@@ -60,22 +62,22 @@ void Game::ComposeFrame()
 	// MOVE THE PIXELS ON THE SCREEN
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 	{
-		x = x + 10; // 2nd level of scope
+		x = x + 1; // 2nd level of scope
 	}
 
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
-		x = x - 10;
+		x = x - 1;
 	}
 
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		y = y - 10;
+		y = y - 1;
 	}
 
 	if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
-		y = y + 10;
+		y = y + 1;
 	}
 	// CHANGE THE COLOR OF THE PIXELS
 	if (wnd.kbd.KeyIsPressed(VK_CONTROL))

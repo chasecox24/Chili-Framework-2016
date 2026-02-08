@@ -27,20 +27,24 @@
 class Game
 {
 public:
-	Game( class MainWindow& wnd );
+	// member functions that make up the behavior of the object (or functions that describe the object)
+	Game(class MainWindow& wnd); // constructor that tells us what code is it to be executed when the object is created
 	Game( const Game& ) = delete;
 	Game& operator=( const Game& ) = delete;
-	void Go();
+	void Go(); // this is the function that will be called in the while loop in win main, it will run forever until the user quits the program (60 times a second)
 private:
-	void ComposeFrame();
+	void ComposeFrame(); //drawl the game frame we show the user
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
 	/********************************/
 private:
+	// these are data members that make up the object (or vairables that describe the object)
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	/********************************/
+	int x = 400;
+	int y = 300;
+	///********************************/
 };
