@@ -40,6 +40,8 @@ void Game::UpdateModel()
 {
 }
 
+// THIS IS IN A WHILE LOOP INSIDE WIN MAIN SO IT WILL RUN FOREVER UNTIL THE USER QUITS THE PROGRAM (60 TIMES A SECOND)
+
 void Game::ComposeFrame()
 //  SHIFT+ CTR + SPACE // GIVE TOOLTIPS
 //  SHIFT+ CTR + SPACE // GIVE TOOLTIPS
@@ -48,6 +50,7 @@ void Game::ComposeFrame()
 {				//800x, 600y    RGB      
 	//gfx.PutPixel(695, 500, 255,gb,gb); // put a pixel on the screen
 
+	// Set variables have a lifespan called scope (LESSON 7)
 	int x = 400;
 	int y = 300;
 	const int boxWidth = 10;
@@ -57,22 +60,22 @@ void Game::ComposeFrame()
 	// MOVE THE PIXELS ON THE SCREEN
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 	{
-		x = x + 100;
+		x = x + 10; // 2nd level of scope
 	}
 
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
-		x = x - 100;
+		x = x - 10;
 	}
 
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		y = y - 100;
+		y = y - 10;
 	}
 
 	if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
-		y = y + 100;
+		y = y + 10;
 	}
 	// CHANGE THE COLOR OF THE PIXELS
 	if (wnd.kbd.KeyIsPressed(VK_CONTROL))
@@ -116,6 +119,3 @@ void Game::ComposeFrame()
 		//  SHIFT+ CTR + SPACE // GIVE TOOLTIPS
 	}
 }
-
-//Make a box shape
-
