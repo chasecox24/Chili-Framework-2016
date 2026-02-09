@@ -37,6 +37,8 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+	void DrawBox(int x, int y, int r, int g, int b);
+	void DrawCrosshair(int x, int y, int r, int g, int b);
 	/********************************/
 private:
 	// these are data members that make up the object (or vairables that describe the object)
@@ -44,6 +46,13 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+
+	//For box in a set position
+	int xFixed = 400;
+	int yFixed = 400;
+	bool colliding = false;
+
+	//For user controlled shape
 	int x = 400;
 	int y = 300;
 	int vx = 0; // velocity in x direction
